@@ -14,10 +14,14 @@
 <body>
 <h2>환영합니다</h2>
 <button class="btn btn-danger" onclick="logout()">로그아웃</button>
+<button class="btn btn-dark" onclick="boardSave()">글작성</button>
 </body>
 <script>
     const logout = () => {
         location.href = "/logout";
+    }
+    const boardSave=()=>{
+        location.href = "/board/save";
     }
 </script>
 </html>
