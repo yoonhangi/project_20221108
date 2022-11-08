@@ -16,8 +16,8 @@
 </body>
 <script>
     const saveFn = () => {
-        // memberPages/save 주소로 이동
-        location.href = "/memberPages/save";
+        // /save주소로 이동
+        location.href = "/save";
     }
 </script>
 </html>
