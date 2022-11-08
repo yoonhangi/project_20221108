@@ -9,8 +9,17 @@
 <html>
 <head>
     <title>로그인</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="/resources/js/jquery.js"></script>
 </head>
 <body>
-
+<div class="container">
+    <form action="/login" method="post">
+        email <input type="text" name="memberEmail" class="form-control" placeholder="이메일">
+        password <input type="text" name="memberPassword" class="form-control" placeholder="비밀번호">
+        <input type="submit" class="btn btn-secondary" value="로그인">
+    </form>
+</div>
 </body>
+
 </html>

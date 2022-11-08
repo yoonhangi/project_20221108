@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class MemberController {
     @Autowired
@@ -32,5 +34,17 @@ public class MemberController {
     @GetMapping("/login")
     public String login() {
         return "memberPages/memberLogin";
+    }
+
+    @PostMapping("/login")
+    public String loginMember(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
+       boolean loginMember = memberService.loginMember(memberDTO);
+       if (loginMember) {
+            session.setAttribute("loginEmail", memberDTO.getMemberEmail());
+            model.addAttribute("modelEmail", memberDTO.getMemberEmail());
+            return "memberPages/memberMain";
+        } else {
+            return "memberPages/memberLogin";
+       }
     }
 }

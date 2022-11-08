@@ -7,6 +7,9 @@
     <insert id="saveMember" parameterType="member">
         insert into member_table_project(memberEmail, memberPassword, memberName, memberMobile) values (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberMobile})
     </insert>
+    <select id="loginMember" resultType="member" parameterType="member">
+        select * from member_table_project where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
+    </select>
 
 </mapper>
 

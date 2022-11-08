@@ -13,5 +13,6 @@
 </head>
 <body>
 <a href="/save" class="btn btn-primary">회원가입</a>
+<a href="/login" class="btn btn-dark">로그인</a>
 </body>
 </html>

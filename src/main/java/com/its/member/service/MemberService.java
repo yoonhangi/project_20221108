@@ -17,4 +17,13 @@ public class MemberService {
            return false;
        }
     }
+
+    public boolean loginMember(MemberDTO memberDTO) {
+        MemberDTO memberDTO1 = memberRepository.loginMember(memberDTO);
+        if (memberDTO1 != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
