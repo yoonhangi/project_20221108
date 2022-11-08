@@ -10,7 +10,9 @@
     <select id="loginMember" resultType="member" parameterType="member">
         select * from member_table_project where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
     </select>
-
+    <select id="duplicate" parameterType="String" resultType="String">
+        select memberEmail from member_table_project where memberEmail=#{memberEmail}
+    </select>
 </mapper>
 
 

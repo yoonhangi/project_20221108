@@ -9,7 +9,8 @@
 <html>
 <head>
     <title>회원가입</title>
-  <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="/resources/js/jquery.js"></script>
     <style>
         #save-form{
             width: 800px;
@@ -19,7 +20,9 @@
 <body>
 <div class="container">
   <form action="/save" method="post" id="save-form">
-   email <input type="text" name="memberEmail" class="form-control" placeholder="이메일">
+   email <input type="text" name="memberEmail" id="memberEmail" onblur="emailDuplicate()" class="form-control" placeholder="이메일">
+   <span id="email-dup"></span>
+   <span id="email-input-check"></span>
    password <input type="text" name="memberPassword" class="form-control" placeholder="비밀번호">
    name <input type="text" name="memberName" class="form-control" placeholder="이름">
    mobile <input type="text" name="memberMobile" class="form-control" placeholder="전화번호">
@@ -30,6 +33,29 @@
 <script>
     const save=()=>{
         location.href = "/login";
+    }
+
+    const emailDuplicate = () => {
+        const email = document.getElementById("memberEmail").value;
+        const checkResult = document.getElementById("email-dup");
+        $.ajax({
+            type:"post",
+            url:"/duplicate-check",
+            dataType:"text",
+            data:{inputEmail: email},
+            success: function (result) {
+                if (result == "ok") {
+                    checkResult.innerHTML = "사용 가능한 이메일";
+                    checkResult.style.color = "green";
+                } else {
+                    checkResult.innerHTML = "이미 사용중인 이메일입니다";
+                    checkResult.style.color = "red";
+                }
+            },
+            error: function () {
+
+            }
+        })
     }
 </script>
 </html>

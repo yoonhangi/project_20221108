@@ -26,4 +26,13 @@ public class MemberService {
             return false;
         }
     }
+
+    public String emailDuplicate(String memberEmail) {
+       String checkResult = memberRepository.emailDuplicate(memberEmail);
+       if (checkResult == null) {
+           return "ok";
+       } else {
+           return "no";
+       }
+    }
 }
