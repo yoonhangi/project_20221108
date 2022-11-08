@@ -50,4 +50,10 @@ public class MemberController {
         String checkResult = memberService.emailDuplicate(memberEmail);
         return checkResult;
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "index";
+    }
 }
