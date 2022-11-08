@@ -9,8 +9,15 @@
 <html>
 <head>
     <title>시작페이지</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-
+    <button class="btn btn-primary" onclick="saveFn()">회원가입</button>
 </body>
+<script>
+    const saveFn = () => {
+        // memberPages/save 주소로 이동
+        location.href = "/memberPages/save";
+    }
+</script>
 </html>
