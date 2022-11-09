@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="container" id="List-form">
-<table class="table table-active text-center">
+<table class="table  table-striped table-active text-center">
    <tr>
        <th>번호</th>
        <th>제목</th>

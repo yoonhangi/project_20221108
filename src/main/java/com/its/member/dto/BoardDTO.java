@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @Setter
