@@ -39,7 +39,7 @@ public class MemberController {
        if (loginMember) {
             session.setAttribute("loginEmail", memberDTO.getMemberEmail());
             model.addAttribute("modelEmail", memberDTO.getMemberEmail());
-            return "memberPages/memberMain";
+            return "boardPages/boardList";
         } else {
             return "memberPages/memberLogin";
        }

@@ -23,7 +23,7 @@
    email <input type="text" name="memberEmail" id="memberEmail" onblur="emailDuplicate()" class="form-control" placeholder="이메일">
    <span id="email-dup"></span>
    <span id="email-input-check"></span>
-   password <input type="text" name="memberPassword" class="form-control" placeholder="비밀번호">
+   password <input type="password" name="memberPassword" class="form-control" placeholder="비밀번호">
    name <input type="text" name="memberName" class="form-control" placeholder="이름">
    mobile <input type="text" name="memberMobile" class="form-control" placeholder="전화번호">
       <input type="button" value="회원가입" class="btn btn-dark" onclick="save()">

@@ -1,6 +1,7 @@
 package com.its.member.Controller;
 
 import com.its.member.dto.BoardDTO;
+import com.its.member.dto.PageDTO;
 import com.its.member.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class BoardController {
     public String save(@ModelAttribute BoardDTO boardDTO){
        boolean result = boardService.save(boardDTO);
        if (result) {
-           return "redirect:/board/";
+           return "redirect:/board/paging?page=";
        } else {
            return "boardPages/saveFail";
        }
@@ -38,10 +39,21 @@ public class BoardController {
     }
 
     @GetMapping
-    public String findById(@RequestParam("id") Long id, Model model) {
+    public String findById(@RequestParam("id") Long id, Model model,
+                           @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
        boardService.updateHits(id);
        BoardDTO boardDTO = boardService.findById(id);
        model.addAttribute("board",boardDTO);
+       model.addAttribute("page", page);
        return "/boardPages/boardDetail";
+    }
+
+    @GetMapping("/paging")
+    public String paging(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        PageDTO pageDTO = boardService.pagingParam(page);
+        model.addAttribute("boardList", pagingList);
+        model.addAttribute("paging", pageDTO);
+        return "/boardPages/boardList";
     }
 }

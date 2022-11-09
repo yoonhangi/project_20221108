@@ -14,6 +14,12 @@
 <body>
 <a href="/save" class="btn btn-primary">회원가입</a>
 <a href="/login" class="btn btn-dark">로그인</a>
-<a href="/board/" class="btn btn-secondary">글목록</a>
+<button class="btn btn-primary" onclick="listFn()">글목록</button>
 </body>
+<script>
+    const listFn = () => {
+        const page = '${page}';
+        location.href = "/board/paging?page=" + page;
+    }
+</script>
 </html>
