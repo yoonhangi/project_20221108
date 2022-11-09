@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -29,5 +31,12 @@ public class BoardController {
        } else {
            return "boardPages/saveFail";
        }
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String findAll(Model model) {
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        model.addAttribute("boardList", boardDTOList);
+        return "boardPages/boardList";
     }
 }

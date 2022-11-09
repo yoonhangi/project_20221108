@@ -7,5 +7,7 @@
     <insert id="save" parameterType="board">
         insert into board_table_project (boardTitle, boardWriter, boardContents) values (#{boardTitle}, #{boardWriter}, #{boardContents})
     </insert>
-
+    <select id="findAll" resultType="board">
+        select * from board_table_project
+    </select>
 </mapper>
