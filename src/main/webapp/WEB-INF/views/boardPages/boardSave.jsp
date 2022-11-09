@@ -23,6 +23,7 @@
         <input type="text" name="boardTitle" placeholder="제목" class="form-control">
         <input type="text" name="boardWriter" placeholder="작성자" class="form-control" value="${sessionScope.loginEmail}">
         <textarea name="boardContents" cols="30" rows="10" class="form-control" placeholder="내용을 입력하세요"></textarea>
+        <input type="file" class="form-control" name="boardFile">
         <input type="submit" value="작성" class="btn btn-primary">
     </form>
 </div>

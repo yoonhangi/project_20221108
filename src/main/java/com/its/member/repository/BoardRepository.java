@@ -13,8 +13,15 @@ public class BoardRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public int save(BoardDTO boardDTO) {
-        return sql.insert("Board.save", boardDTO);
+    public BoardDTO save(BoardDTO boardDTO) {
+        System.out.println("insert 전 boardDTO = " + boardDTO);
+        sql.insert("Board.save", boardDTO);
+        System.out.println("insert 후 boardDTO = " + boardDTO);
+        return boardDTO;
+    }
+
+    public void saveFileName(BoardDTO boardDTO) {
+        sql.insert("Board.saveFile", boardDTO);
     }
 
     public List<BoardDTO> findAll() {
@@ -22,7 +29,12 @@ public class BoardRepository {
     }
 
     public BoardDTO findById(Long id) {
-        return sql.selectOne("Board.findById", id);
+        BoardDTO boardDTO = sql.selectOne("Board.findById", id);
+        if (boardDTO.getFileAttached() == 1) {
+            return sql.selectOne("Board.findByIdFile", id);
+        } else {
+            return boardDTO;
+        }
     }
 
     public void updateHits(Long id) {

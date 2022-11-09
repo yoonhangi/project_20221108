@@ -4,14 +4,22 @@
 
 
 <mapper namespace="Board">
-    <insert id="save" parameterType="board">
-        insert into board_table_project (boardTitle, boardWriter, boardContents) values (#{boardTitle}, #{boardWriter}, #{boardContents})
+    <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into board_table_project (boardTitle, boardWriter, boardContents, fileAttached) values (#{boardTitle}, #{boardWriter}, #{boardContents}, #{fileAttached})
+    </insert>
+    <insert id="saveFile" parameterType="board">
+        insert into board_file_table_project(originalFileName, storedFileName, boardId)
+        values(#{originalFileName}, #{storedFileName}, #{id})
     </insert>
     <select id="findAll" resultType="board">
         select * from board_table_project
     </select>
     <select id="findById" parameterType="Long" resultType="board">
         select * from board_table_project where id=#{id}
+    </select>
+    <select id="findByIdFile" parameterType="Long" resultType="board">
+        select * from board_table_project b, board_file_table_project bf
+        where b.id=bf.boardId and b.id=#{id}
     </select>
     <update id="updateHits" parameterType="Long">
         update board_table_project set boardHits = boardHits + 1 where id=#{id}

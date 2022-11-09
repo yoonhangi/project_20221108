@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>글 상세조회</title>
@@ -40,6 +41,15 @@
             <th>조회수</th>
             <td>${board.boardHits}</td>
         </tr>
+        <c:if test="${board.storedFileName != null}">
+            <tr>
+                <th>file</th>
+                <td>
+                    <img src="${pageContext.request.contextPath}/upload/${board.storedFileName}"
+                         alt="" width="100" height="100">
+                </td>
+            </tr>
+        </c:if>
     </table>
 </div>
 </body>
