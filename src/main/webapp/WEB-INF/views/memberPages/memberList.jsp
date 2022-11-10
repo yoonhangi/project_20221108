@@ -30,10 +30,15 @@
       <td>${member.memberPassword}</td>
       <td>${member.memberName}</td>
       <td><a href="/member?id=${member.id}">조회</a></td>
+      <td><button class="btn btn-danger" onclick="deleteMember('${member.id}')">삭제</button></td>
     </tr>
     </c:forEach>
   </table>
 </div>
-
 </body>
+<script>
+  const deleteMember = (clickedId) => {
+    location.href = "/delete?id="+clickedId;
+  }
+</script>
 </html>

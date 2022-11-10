@@ -19,6 +19,9 @@
     <select id="findById" parameterType="Long" resultType="member">
         select * from member_table_project where id=#{id}
     </select>
+    <delete id="delete" parameterType="member" >
+        delete from member_table_project where id=#{id}
+    </delete>
 </mapper>
 
 
