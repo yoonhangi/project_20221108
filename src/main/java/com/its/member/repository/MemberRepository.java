@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class MemberRepository {
     @Autowired
@@ -19,5 +21,13 @@ public class MemberRepository {
 
     public String emailDuplicate(String memberEmail) {
         return sql.selectOne("Member.duplicate", memberEmail);
+    }
+
+    public List<MemberDTO> findAll() {
+        return sql.selectList("Member.findAll");
+    }
+
+    public MemberDTO findById(Long id) {
+        return sql.selectOne("Member.findById",id);
     }
 }

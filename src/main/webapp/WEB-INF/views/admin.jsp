@@ -14,7 +14,8 @@
 </head>
 <body>
 <div class="container">
-
+    <a href="/memberList" class="btn btn-primary" methods="post">회원목록</a>
 </div>
 </body>
+
 </html>

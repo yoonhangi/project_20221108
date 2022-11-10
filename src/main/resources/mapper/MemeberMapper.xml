@@ -13,6 +13,12 @@
     <select id="duplicate" parameterType="String" resultType="String">
         select memberEmail from member_table_project where memberEmail=#{memberEmail}
     </select>
+    <select id="findAll" resultType="member">
+        select * from member_table_project
+    </select>
+    <select id="findById" parameterType="Long" resultType="member">
+        select * from member_table_project where id=#{id}
+    </select>
 </mapper>
 
 

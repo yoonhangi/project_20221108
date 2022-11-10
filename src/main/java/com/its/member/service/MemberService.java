@@ -5,6 +5,8 @@ import com.its.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
     @Autowired
@@ -34,5 +36,13 @@ public class MemberService {
        } else {
            return "no";
        }
+    }
+
+    public List<MemberDTO> findAll() {
+       return memberRepository.findAll();
+    }
+
+    public MemberDTO findById(Long id) {
+        return memberRepository.findById(id);
     }
 }
