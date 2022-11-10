@@ -26,15 +26,11 @@
    password <input type="password" name="memberPassword" class="form-control" placeholder="비밀번호">
    name <input type="text" name="memberName" class="form-control" placeholder="이름">
    mobile <input type="text" name="memberMobile" class="form-control" placeholder="전화번호">
-      <input type="button" value="회원가입" class="btn btn-dark" onclick="save()">
+      <input type="submit" value="회원가입" class="btn btn-dark">
   </form>
 </div>
 </body>
 <script>
-    const save=()=>{
-        location.href = "/login";
-    }
-
     const emailDuplicate = () => {
         const email = document.getElementById("memberEmail").value;
         const checkResult = document.getElementById("email-dup");
@@ -53,7 +49,6 @@
                 }
             },
             error: function () {
-
             }
         })
     }
