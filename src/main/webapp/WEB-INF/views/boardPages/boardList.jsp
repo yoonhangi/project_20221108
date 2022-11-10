@@ -93,6 +93,11 @@
             </c:otherwise>
         </c:choose>
     </ul>
+    <div class="text-center">
+    <c:if test="${sessionScope.loginEmail == 'admin'}">
+        <a href="/admin" class="btn btn-primary">관리자 페이지</a>
+    </c:if>
+    </div>
 </div>
 <div class="text-center">
 <button class="btn btn-danger" onclick="logout()">로그아웃</button>
