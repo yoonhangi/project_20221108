@@ -99,4 +99,8 @@ public class BoardService {
         pageDTO.setEndPage(endPage);
         return pageDTO;
     }
+
+    public void update(BoardDTO boardDTO) {
+        boardRepository.update(boardDTO);
+    }
 }

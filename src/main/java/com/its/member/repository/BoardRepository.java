@@ -48,4 +48,8 @@ public class BoardRepository {
     public int boardCount() {
         return sql.selectOne("Board.boardCount");
     }
+
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update", boardDTO);
+    }
 }

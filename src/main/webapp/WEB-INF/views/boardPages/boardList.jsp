@@ -29,6 +29,7 @@
        <th>작성자</th>
        <th>작성날짜</th>
        <th>조회수</th>
+       <th>상세조회</th>
    </tr>
     <c:forEach items="${boardList}" var="board">
     <tr>
@@ -41,6 +42,11 @@
             <fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
         </td>
         <td>${board.boardHits}</td>
+        <td>
+        <c:if test="${sessionScope.loginEmail == board.boardWriter}">
+            <a href="/board?id=${board.id}&page=${paging.page}" class="btn btn-primary">상세조회</a>
+        </c:if>
+        </td>
     </tr>
     </c:forEach>
 </table>
@@ -97,6 +103,9 @@
     <c:if test="${sessionScope.loginEmail == 'admin'}">
         <a href="/admin" class="btn btn-primary">관리자 페이지</a>
     </c:if>
+    </div>
+    <div class="text-center">
+
     </div>
 </div>
 <div class="text-center">

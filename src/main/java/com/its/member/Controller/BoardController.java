@@ -46,9 +46,9 @@ public class BoardController {
        BoardDTO boardDTO = boardService.findById(id);
        model.addAttribute("board",boardDTO);
        model.addAttribute("page", page);
-        System.out.println("조회: boardDTO="+boardDTO);
-        List<CommentDTO> commentDTOList = commentService.findAll(id);
-        model.addAttribute("commentList", commentDTOList);
+       System.out.println("조회: boardDTO="+boardDTO);
+       List<CommentDTO> commentDTOList = commentService.findAll(id);
+       model.addAttribute("commentList", commentDTOList);
        return "/boardPages/boardDetail";
     }
 
@@ -59,5 +59,20 @@ public class BoardController {
         model.addAttribute("boardList", pagingList);
         model.addAttribute("paging", pageDTO);
         return "/boardPages/boardList";
+    }
+
+    @GetMapping("/update")
+    public String updateForm(@RequestParam("id") Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "boardPages/boardUpdate";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        boardService.update(boardDTO);
+        BoardDTO dto = boardService.findById(boardDTO.getId());
+        model.addAttribute("board", dto);
+        return "redirect:/board/paging?page=";
     }
 }

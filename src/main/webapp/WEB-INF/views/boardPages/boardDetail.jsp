@@ -57,6 +57,11 @@
             </tr>
         </c:if>
     </table>
+    <div class="container">
+    <c:if test="${sessionScope.loginEmail == board.boardWriter}">
+        <button class="btn btn-info" onclick="updateBoard()">수정하기</button>
+    </c:if>
+    </div>
 </div>
 <div class="container mt-5" id="comment-write" >
     <div class="input-group-sm mb-3">
@@ -128,6 +133,11 @@
                 console.log("실패");
             }
         });
+    }
+
+    const updateBoard = () => {
+        const id = '${board.id}';
+        location.href = "/board/update?id=" + id;
     }
 </script>
 </html>
