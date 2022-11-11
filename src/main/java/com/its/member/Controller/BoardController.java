@@ -1,8 +1,10 @@
 package com.its.member.Controller;
 
 import com.its.member.dto.BoardDTO;
+import com.its.member.dto.CommentDTO;
 import com.its.member.dto.PageDTO;
 import com.its.member.service.BoardService;
+import com.its.member.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/save")
     public String save() {
@@ -43,6 +47,8 @@ public class BoardController {
        model.addAttribute("board",boardDTO);
        model.addAttribute("page", page);
         System.out.println("조회: boardDTO="+boardDTO);
+        List<CommentDTO> commentDTOList = commentService.findAll(id);
+        model.addAttribute("commentList", commentDTOList);
        return "/boardPages/boardDetail";
     }
 

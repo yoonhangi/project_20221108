@@ -7,14 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>글 상세조회</title>
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="/resources/js/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <style>
         #list-detail {
             width: 800px;
             margin-top: 50px;
+        }
+        #comment-write {
+            width: 650px;
         }
     </style>
 </head>
@@ -52,5 +58,76 @@
         </c:if>
     </table>
 </div>
+<div class="container mt-5" id="comment-write" >
+    <div class="input-group-sm mb-3">
+        <div class="form-floating">
+            <input type="text" id="commentWriter" value="${sessionScope.loginEmail}" class="form-control" placeholder="작성자">
+            <label for="commentWriter">작성자</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" id="commentContents" class="form-control" placeholder="내용">
+            <label for="commentContents">내용</label>
+        </div>
+        <button id="comment-write-btn" class="btn btn-secondary" onclick="commentWrite()">댓글작성</button>
+    </div>
+</div>
+<div class="container mt-5" id="comment-list">
+    <table class="table">
+        <tr>
+            <th>댓글번호</th>
+            <th>작성자</th>
+            <th>내용</th>
+            <th>작성시간</th>
+        </tr>
+        <c:forEach items="${commentList}" var="comment">
+            <tr>
+                <td>${comment.id}</td>
+                <td>${comment.commentWriter}</td>
+                <td>${comment.commentContents}</td>
+                <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${comment.commentCreatedDate}"></fmt:formatDate></td>
+            </tr>
+        </c:forEach>
+    </table>
+</div>
 </body>
+<script>
+    const commentWrite = () => {
+        const writer = document.getElementById("commentWriter").value;
+        const contents = document.getElementById("commentContents").value;
+        const board = '${board.id}';
+        $.ajax({
+            type: "post",
+            url: "/comment/save",
+            data: {
+                commentWriter: writer,
+                commentContents: contents,
+                boardId: board
+            },
+            dataType: "json",
+            success: function (commentList) {
+                console.log(commentList);
+                let output = "<table class='table'>";
+                output += "<tr><th>댓글번호</th>";
+                output += "<th>작성자</th>";
+                output += "<th>내용</th>";
+                output += "<th>작성시간</th></tr>";
+                for(let i in commentList){
+                    output += "<tr>";
+                    output += "<td>"+commentList[i].id+"</td>";
+                    output += "<td>"+commentList[i].commentWriter+"</td>";
+                    output += "<td>"+commentList[i].commentContents+"</td>";
+                    output += "<td>"+moment(commentList[i].commentCreatedDate).format("YYYY-MM-DD HH:mm:ss")+"</td>";
+                    output += "</tr>";
+                }
+                output += "</table>";
+                document.getElementById('comment-list').innerHTML = output;
+                document.getElementById('commentWriter').value='';
+                document.getElementById('commentContents').value='';
+            },
+            error: function () {
+                console.log("실패");
+            }
+        });
+    }
+</script>
 </html>
