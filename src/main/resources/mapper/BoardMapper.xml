@@ -36,4 +36,7 @@
     <delete id="delete" parameterType="board">
         delete from board_table_project where id=#{id}
     </delete>
+    <select id="search" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table_project where ${type} like concat('%', #{q}, '%') order by id desc
+    </select>
 </mapper>
