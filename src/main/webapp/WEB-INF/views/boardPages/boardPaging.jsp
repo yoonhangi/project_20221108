@@ -114,8 +114,8 @@
     </div>
 </div>
 <form action="/board/search" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-<div class="input-group text-center" id="search-form">
-    <select name="type" class="form-select">
+<div class="input-group" id="search-form">
+    <select name="type" class="form-select ">
         <option value="boardTitle" selected>제목</option>
         <option value="boardWriter">작성자</option>
     </select>
@@ -123,6 +123,12 @@
            aria-label="Search">
     <button class="btn btn-outline-light"><i class="bi bi-search"></i></button>
 </div>
+<div class="container text-center">
+    <form action="/update" method="get">
+        <input type="button" value="마이페이지" onclick="updateMember()" class="btn btn-primary">
+    </form>
+</div>
+
 </form>
 <div class="text-center">
 <button class="btn btn-danger" onclick="logout()">로그아웃</button>
@@ -135,6 +141,9 @@
     }
     const boardSave=()=>{
         location.href = "/board/save";
+    }
+    const updateMember = () => {
+        location.href = "/update";
     }
 </script>
 </html>

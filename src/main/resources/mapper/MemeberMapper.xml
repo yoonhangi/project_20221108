@@ -22,6 +22,12 @@
     <delete id="delete" parameterType="member" >
         delete from member_table_project where id=#{id}
     </delete>
+    <select id="findByEmail" parameterType="String" resultType="member">
+        select * from member_table_project where memberEmail = #{memberEmail}
+    </select>
+    <update id="update" parameterType="member">
+        update member_table_project set memberName=#{memberName}, memberMobile=#{memberMobile} where id=#{id}
+    </update>
 </mapper>
 
 

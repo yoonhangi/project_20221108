@@ -82,4 +82,22 @@ public class MemberController {
         memberService.delete(id);
         return "redirect:/admin";
     }
+
+    @GetMapping("/update")
+    public String updateForm(HttpSession session, Model model) {
+        String memberEmail = (String) session.getAttribute("loginEmail");
+        MemberDTO memberDTO = memberService.findByEmail(memberEmail);
+        model.addAttribute("member", memberDTO);
+        return "memberPages/memberUpdate";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute MemberDTO memberDTO) {
+        boolean result = memberService.update(memberDTO);
+        if (result) {
+            return "redirect:/board/";
+        } else {
+            return "index";
+        }
+    }
 }
