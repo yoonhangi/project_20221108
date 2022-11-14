@@ -62,6 +62,11 @@
         <button class="btn btn-info" onclick="updateBoard()">수정하기</button>
     </c:if>
     </div>
+    <div class="container">
+        <c:if test="${sessionScope.loginEmail == 'admin'}">
+            <button class="btn btn-danger" onclick="deleteFn()">삭제하기</button>
+        </c:if>
+    </div>
 </div>
 <div class="container mt-5" id="comment-write" >
     <div class="input-group-sm mb-3">
@@ -138,6 +143,10 @@
     const updateBoard = () => {
         const id = '${board.id}';
         location.href = "/board/update?id=" + id;
+    }
+    const deleteFn = () => {
+        const id = '${board.id}';
+        location.href = "/board/delete?id=" + id;
     }
 </script>
 </html>
