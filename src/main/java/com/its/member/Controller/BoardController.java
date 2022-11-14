@@ -29,14 +29,14 @@ public class BoardController {
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public String save(@ModelAttribute BoardDTO boardDTO) throws IOException {
        boardService.save(boardDTO);
-       return "redirect:/board/paging?page=";
+       return "redirect:/board/";
     }
 
     @GetMapping("/")
     public String findAll(Model model) {
         List<BoardDTO> boardDTOList = boardService.findAll();
         model.addAttribute("boardList", boardDTOList);
-        return "boardPages/boardList";
+        return "boardPages/boardPaging";
     }
 
     @GetMapping
@@ -58,7 +58,7 @@ public class BoardController {
         PageDTO pageDTO = boardService.pagingParam(page);
         model.addAttribute("boardList", pagingList);
         model.addAttribute("paging", pageDTO);
-        return "/boardPages/boardList";
+        return "boardPages/boardPaging";
     }
 
     @GetMapping("/update")
@@ -73,6 +73,6 @@ public class BoardController {
         boardService.update(boardDTO);
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("board", dto);
-        return "redirect:/board/paging?page=";
+        return "boardPages/boardDetail";
     }
 }
