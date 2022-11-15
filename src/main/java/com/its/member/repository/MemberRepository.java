@@ -11,8 +11,13 @@ import java.util.List;
 public class MemberRepository {
     @Autowired
     private SqlSessionTemplate sql;
-    public int saveMember(MemberDTO memberDTO) {
-        return sql.insert("Member.saveMember", memberDTO);
+    public MemberDTO saveMember(MemberDTO memberDTO) {
+        sql.insert("Member.saveMember", memberDTO);
+        return memberDTO;
+    }
+
+    public void saveFileName(MemberDTO savedMember) {
+        sql.insert("Member.saveFile", savedMember);
     }
 
     public MemberDTO loginMember(MemberDTO memberDTO) {
@@ -28,7 +33,12 @@ public class MemberRepository {
     }
 
     public MemberDTO findById(Long id) {
-        return sql.selectOne("Member.findById",id);
+        MemberDTO memberDTO = sql.selectOne("Member.findById", id);
+        if (memberDTO.getFileAttached() == 1) {
+            return sql.selectOne("Member.findByIdFile", id);
+        } else {
+            return memberDTO;
+        }
     }
 
     public void delete(Long id) {
@@ -42,4 +52,5 @@ public class MemberRepository {
     public int update(MemberDTO memberDTO) {
         return sql.update("Member.update", memberDTO);
     }
+
 }

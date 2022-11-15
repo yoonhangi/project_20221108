@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -20,14 +21,10 @@ public class MemberController {
     }
 
     @PostMapping("/save")
-    public String saveMember(@ModelAttribute MemberDTO memberDTO, Model model) {
-        boolean result = memberService.saveMember(memberDTO);
-        model.addAttribute("result", result);
-        if (result) {
+    public String saveMember(@ModelAttribute MemberDTO memberDTO, Model model) throws IOException {
+        memberService.saveMember(memberDTO);
             return "memberPages/memberLogin";
-        } else {
-            return "index";
-        }
+
     }
     @GetMapping("/login")
     public String login() {

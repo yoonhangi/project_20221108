@@ -19,13 +19,14 @@
 </head>
 <body>
 <div class="container">
-  <form action="/save" method="post" id="save-form">
+  <form action="/save" method="post" id="save-form" enctype="multipart/form-data">
    email <input type="text" name="memberEmail" id="memberEmail" onblur="emailDuplicate()" class="form-control" placeholder="이메일">
    <span id="email-dup"></span>
    <span id="email-input-check"></span>
    password <input type="password" name="memberPassword" class="form-control" placeholder="비밀번호">
    name <input type="text" name="memberName" class="form-control" placeholder="이름">
    mobile <input type="text" name="memberMobile" class="form-control" placeholder="전화번호">
+      <input type="file" class="form-control" name="memberFile">
       <input type="submit" value="회원가입" class="btn btn-dark">
   </form>
 </div>

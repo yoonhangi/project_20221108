@@ -4,8 +4,12 @@
 
 
 <mapper namespace="Member">
-    <insert id="saveMember" parameterType="member">
-        insert into member_table_project(memberEmail, memberPassword, memberName, memberMobile) values (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberMobile})
+    <insert id="saveMember" parameterType="member" useGeneratedKeys="true" keyProperty="id">
+        insert into member_table_project(memberEmail, memberPassword, memberName, memberMobile, fileAttached) values (#{memberEmail}, #{memberPassword}, #{memberName}, #{memberMobile},#{fileAttached})
+    </insert>
+    <insert id="saveFile" parameterType="member">
+        insert into member_file_table(originalFileName, storedFileName, memberId)
+        values(#{originalFileName}, #{storedFileName}, #{id})
     </insert>
     <select id="loginMember" resultType="member" parameterType="member">
         select * from member_table_project where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
@@ -18,6 +22,9 @@
     </select>
     <select id="findById" parameterType="Long" resultType="member">
         select * from member_table_project where id=#{id}
+    </select>
+    <select id="findByIdFile" parameterType="Long" resultType="member">
+        select * from member_table_project m, member_file_table mf where m.id=mf.memberId and m.id=#{id}
     </select>
     <delete id="delete" parameterType="member" >
         delete from member_table_project where id=#{id}

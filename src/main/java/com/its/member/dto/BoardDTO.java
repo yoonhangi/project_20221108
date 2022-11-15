@@ -19,6 +19,7 @@ public class BoardDTO {
     private String boardContents;
     private int boardHits;
     private Timestamp boardCreatedDate;
+    private Long memberId;
     private String boardFileName;
     // 파일을 담기위한 필드
     private MultipartFile boardFile;
