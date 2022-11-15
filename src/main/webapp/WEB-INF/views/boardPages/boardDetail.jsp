@@ -78,9 +78,10 @@
             <input type="text" id="commentContents" class="form-control" placeholder="내용">
             <label for="commentContents">내용</label>
         </div>
-        <button id="comment-write-btn" class="btn btn-secondary" onclick="commentWrite()">댓글작성</button>
+        <button id="comment-write-btn" class="btn btn-secondary" onclick="commentFn()">댓글작성</button>
     </div>
 </div>
+</body>
 <div class="container mt-5" id="comment-list">
     <table class="table">
         <tr>
@@ -99,9 +100,8 @@
         </c:forEach>
     </table>
 </div>
-</body>
 <script>
-    const commentWrite = () => {
+    const commentFn = () => {
         const writer = document.getElementById("commentWriter").value;
         const contents = document.getElementById("commentContents").value;
         const board = '${board.id}';

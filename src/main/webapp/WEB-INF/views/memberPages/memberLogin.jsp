@@ -17,7 +17,7 @@
 <div class="container">
     <form action="/login" method="post">
         email <input type="text" name="memberEmail" class="form-control" placeholder="이메일">
-        password <input type="text" name="memberPassword" class="form-control" placeholder="비밀번호">
+        password <input type="password" name="memberPassword" class="form-control" placeholder="비밀번호">
         <input type="submit" class="btn btn-primary" value="로그인">
     </form>
 </div>

@@ -5,10 +5,9 @@
 
 <mapper namespace="Comment">
     <insert id="save" parameterType="com.its.member.dto.CommentDTO">
-        insert into comment_table_project (commentWriter, commentContents, boardId) values (#{commnetWriter}, #{commentContents}, #{boardId})
+        insert into comment_table_project (commentWriter, commentContents, boardId) values (#{commentWriter}, #{commentContents}, #{boardId})
     </insert>
     <select id="findAll" parameterType="Long" resultType="com.its.member.dto.CommentDTO">
-        select * from comment_table where boardId=#{boardId} order by id desc
+        select * from comment_table_project where boardId=#{boardId} order by id desc
     </select>
-
 </mapper>
